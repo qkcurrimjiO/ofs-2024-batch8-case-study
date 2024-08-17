@@ -2,7 +2,6 @@ import fs from 'fs';
 import readlineSync from 'readline-sync';
 const path = './employees.json';
 
-//read the current employee data from the JSON file
 function readEmployeeData() {
     if (fs.existsSync(path)) {
         const data = fs.readFileSync(path, 'utf-8');
@@ -11,13 +10,9 @@ function readEmployeeData() {
         return [];
     }
 }
-
-//write employee data to the JSON file
 function writeEmployeeData(data) {
     fs.writeFileSync(path, JSON.stringify(data, null, 2), 'utf-8');
 }
-
-//add or update an employee
 function addOrUpdateEmployee(id, name, salary) {
     const employees = readEmployeeData();
     
@@ -33,8 +28,6 @@ function addOrUpdateEmployee(id, name, salary) {
     }
     writeEmployeeData(employees);
 }
-
-//print all employee details
 function printAllEmployees() {
     const employees = readEmployeeData();
     console.log("Employee Details:");
@@ -42,8 +35,6 @@ function printAllEmployees() {
         console.log(`ID: ${emp.id}, Name: ${emp.name}, Salary: ${emp.salary}`);
     });
 }
-
-//prompt user for input and handle it
 function promptUser() {
     const id = readlineSync.question('Enter Employee ID: ');
     const name = readlineSync.question('Enter Employee Name: ');
